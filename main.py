@@ -13,7 +13,7 @@ def main():
     root.after(20, main)
     
 def motion(event):
-    if 'line' in globals():
+    if len(lines)>0:
         lines[len(lines) -1].delete_line()
     lines[len(lines) -1].draw_line(event.x, event.y)
     
@@ -49,4 +49,3 @@ c.focus_set()
 main()
 #start_game()
 root.mainloop()
-
