@@ -6,23 +6,22 @@ HEIGHT = 600
 lines = []
 
 def main():
-    
+    #print(len(lines))
     root.bind("<Button-1>", create_line)
-    root.bind('<Motion>', motion)
-    print(len(lines))
+    if len(lines) != 0:
+        root.bind('<Motion>', motion)
     root.after(20, main)
     
 def motion(event):
-    if line != None:
-        line.delete_line()
-    line.draw_line(event.x, event.y)
+    if 'line' in globals():
+        lines[len(lines) -1].delete_line()
+    lines[len(lines) -1].draw_line(event.x, event.y)
     
     
 def create_line(event):
-    global line
-    if line != None:
-        lines.append(line)
-    line = Line(event.x, event.y)
+    #if line != None:
+    #    lines.append(line)
+    lines.append(Line(event.x, event.y))
 
 
 class Line(object):
@@ -43,7 +42,6 @@ class Line(object):
 
 # Setting up window
 root = Tk()
-
 c = Canvas(root, width=WIDTH, height=HEIGHT)
 c.grid() 
 c.focus_set()
